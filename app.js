@@ -22,16 +22,18 @@ let connectedUsers = [];
 io.on("connection", (socket) => {
   console.log("New client connected");
   console.log(socket.id);
+  connectedUsers.push(socket.id);
 
   // handling the pre-offer that we recived from the client
   socket.on("pre-offer", (data) => {
-    console.log("pre-offer came from the client");
+    console.log("pre-offer came from the caller");
     console.log(data);
     // we will store the data in in the variables
     const { callType, personalCode } = data;
 
     // look for the personal code in the connected users array
     const isUserExist = connectedUsers.find((id) => id === personalCode);
+    
 
     // if the user exist then we will send the pre-offer to the target reciver
     if (isUserExist) {
@@ -40,9 +42,12 @@ io.on("connection", (socket) => {
         callType: callType,
       };
 
-      console.log("requesrt sent to reviever");
-      io.to(personalCode).emit("pre-offer", data2);
+      console.log("request sent to callee");
+      socket.to(personalCode).emit("pre-offer", data2);
       
+    }
+    else{
+        console.log("user not found");
     }
   });
 

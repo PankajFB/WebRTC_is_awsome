@@ -6,10 +6,13 @@ import * as webRTChandler from "./webRTChandler.js";
 let socketIO = null;
 
 export const registerSocket = (socket) => {
+
+  // to set the socket in the store variable
+  socketIO = socket;
+
   // this is to insure that the socket is connected to the server form the client side
   socket.on("connect", () => {
-    // to set the socket in the store variable
-    socketIO = socket;
+    
 
     console.log("successfully connected to socket server");
     console.log(socket.id);
@@ -24,6 +27,7 @@ export const registerSocket = (socket) => {
 
   // handling the pre-offer that we recived from the server
   socket.on("pre-offer", (data) => {
+    console.log("pre-offer came from the server");
     webRTChandler.handlePreOffer(data);
   });
 
