@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <style src="/public/css/style.css" ></style> -->
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* this two classes preview-stream and preview-stream_container are for the preview video only */
+      .preview-stream {
+        width: 100%;
+        height: 100%;
+      }
+      .preview-stream_container {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        background: rgba(196, 196, 196, 0.2);
+        top: 15px;
+        left: 15px;
+      }
+
+      .chat_container {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        background: rgba(196, 196, 196, 0.2);
+        bottom: 15px;
+        left: 15px;
+      }
+
+      /* This css is for our call buttons container */
+      .call_buttons_container {
+        position: absolute;
+        width: 395px;
+        height: 75px;
+        bottom: 20px;
+        left: calc(50% - 200px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .chat-col{
+        position: relative;
+        bottom: 20px;
+        display: grid;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .new_messages{
+        position: relative;
+        bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- from here we are designing the UI of the application -->
+    <div class="container-fluid" style="background-color: rgb(117, 141, 220)">
+      <div class="container text-center">
+        <div class="row">
+          <!-- this is our first column or we can say our first section -->
+          <div class="col">
+            <legend>
+              <img
+                src="/public/logo.png"
+                alt=""
+                srcset=""
+                style="height: 30px"
+              />Instagram
+            </legend>
+
+            <div>
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Talk with other user by passing his personal codw or talk with
+                stranger</label
+              >
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Your Personal Code</h5>
+                  <p class="card-text" id="personal-code">code</p>
+                  <a href="#" class="btn btn-primary" id="copy-personal-code" >Copy Personal Code</a>
+                </div>
+              </div>
+              <br />
+
+              <div class="mb-3">
+                <label for="basic-url" class="form-label">Personal Code</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-describedby="basic-addon3"
+                    id="personal-code-input"
+                  />
+                </div>
+                <br />
+                <button type="button" class="btn btn-primary btn-lg" id="chat-button" >
+                  <img
+                    src="/public/images/chat.png"
+                    alt=""
+                    srcset=""
+                    style="height: 30px"
+                  />
+                  Chat
+                </button>
+                <button type="button" class="btn btn-primary btn-lg" id="video-button">
+                  <img
+                    src="/public/images/video-cam.png"
+                    alt=""
+                    srcset=""
+                    style="height: 30px"
+                  />
+                  Video Call
+                </button>
+              </div>
+
+              <br />
+              <br />
+              <div class="mb-3">
+                <label for="basic-url" class="form-label"
+                  >Connect with Strangers</label
+                >
+
+                <br />
+                <button type="button" class="btn btn-primary btn-lg">
+                  <img
+                    src="/public/images/chat.png"
+                    alt=""
+                    srcset=""
+                    style="height: 30px"
+                  />
+                  Chat
+                </button>
+                <button type="button" class="btn btn-primary btn-lg">
+                  <img
+                    src="/public/images/video-cam.png"
+                    alt=""
+                    srcset=""
+                    style="height: 30px"
+                  />
+                  Video Call
+                </button>
+              </div>
+              <br />
+              <br />
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <span>Allow connections with strangers</span>
+              </div>
+              <br /><br /><br /><br /><br />
+            </div>
+          </div>
+          <!-- section two -->
+          <div class="col">
+            <br />
+            <br />
+            <div class="card mb-3">
+              <div class="card-body h-100 d-inline-block">
+                <h5 class="card-title">Card title</h5>
+                <!-- this is the upcoming stream -->
+                <video
+                  src="..."
+                  class="object-fit-contain"
+                  autoplay
+                  style="height: 300px"
+                ></video>
+                <!-- this is our own stream -->
+                <div class="preview-stream_container">
+                  <video
+                    src="..."
+                    class="preview-stream"
+                    muted
+                    autoplay
+                  ></video>
+                </div>
+
+                <div class="call_buttons_container">
+                  <button>
+                    <img
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 30px"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 30px"
+                    />
+                  </button>
+                  <button class="btn btn-lg">
+                    <img
+                      class="object-fit-sm-contain border rounded"
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 50px"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 30px"
+                    />
+                  </button>
+                  <button>
+                    <img
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 30px"
+                    />
+                  </button>
+                </div>
+                <div class="video_recording_buttons_container display_none">
+                  <button>
+                    <img
+                      src="/public/images/chat.png"
+                      alt=""
+                      srcset=""
+                      style="height: 30px"
+                    />
+                  </button>
+                  <button class="btn btn-sm">Stop Recording</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- this is our chat section -->
+          <div class="col chat-col">
+            <!-- we will appening new chat here -->
+            <div class="new_messages">
+                new messages
+            </div>
+            
+            <!-- input and send button -->
+
+            <div class="input-group mb-3 chat_container ">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Recipient's username"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2"
+              />
+              <span class="input-group-text" id="basic-addon2"
+                >@example.com</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- this is our boostrap script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- for importing the socket.io javascript -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- for importing the javascript -->
+    <!-- we have written type as module bcos we will also import other js function inside out script -->
+    <script src="./js/ui.js" type="module"></script>
+    <script src="./js/constant.js" type="module"></script>
+    <script src="./js/webRTChandler.js" type="module"></script>
+    <script src="./js/wss.js" type="module"></script>
+    <script src="./js/store.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>
