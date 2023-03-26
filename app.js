@@ -32,6 +32,7 @@ io.on("connection", (socket) => {
     const { callType, personalCode } = data;
 
     // look for the personal code in the connected users array
+    // remeember not to use the { } in this arrow function it does not work
     const isUserExist = connectedUsers.find((id) => id === personalCode);
     
 

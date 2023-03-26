@@ -28,6 +28,7 @@ export const registerSocket = (socket) => {
   // handling the pre-offer that we recived from the server
   socket.on("pre-offer", (data) => {
     console.log("pre-offer came from the server");
+    console.log(data);
     webRTChandler.handlePreOffer(data);
   });
 
@@ -36,5 +37,6 @@ export const registerSocket = (socket) => {
 
 // to send the pre-offer to the server
 export const sendPreOffer = (data) => {
+  console.log(data);
   socketIO.emit("pre-offer", data);
 };
