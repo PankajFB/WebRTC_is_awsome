@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    <link rel="stylesheet" href="/css/style.css" >
+    <!-- we dont need to mention the actual path of the source node will automatically gonna check it inside the public folder only -->
+    <link rel="stylesheet" href="/css/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -51,14 +51,14 @@
         justify-content: space-between;
         align-items: center;
       }
-      .chat-col{
+      .chat-col {
         position: relative;
         bottom: 20px;
         display: grid;
         justify-content: space-between;
         align-items: flex-end;
       }
-      .new_messages{
+      .new_messages {
         position: relative;
         bottom: 20px;
         display: flex;
@@ -94,7 +94,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Your Personal Code</h5>
                   <p class="card-text" id="personal-code">code</p>
-                  <a href="#" class="btn btn-primary" id="copy-personal-code" >Copy Personal Code</a>
+                  <a href="#" class="btn btn-primary" id="copy-personal-code"
+                    >Copy Personal Code</a
+                  >
                 </div>
               </div>
               <br />
@@ -110,7 +112,11 @@
                   />
                 </div>
                 <br />
-                <button type="button" class="btn btn-primary btn-lg" id="chat-button" >
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  id="chat-button"
+                >
                   <img
                     src="/images/chat.png"
                     alt=""
@@ -119,7 +125,11 @@
                   />
                   Chat
                 </button>
-                <button type="button" class="btn btn-primary btn-lg" id="video-button">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-lg"
+                  id="video-button"
+                >
                   <img
                     src="/images/video-cam.png"
                     alt=""
@@ -187,12 +197,7 @@
                 ></video>
                 <!-- this is our own stream -->
                 <div class="preview-stream_container">
-                  <video
-                    src=""
-                    class="preview-stream"
-                    muted
-                    autoplay
-                  ></video>
+                  <video src="" class="preview-stream" muted autoplay></video>
                 </div>
 
                 <div class="call_buttons_container">
@@ -255,13 +260,11 @@
           <!-- this is our chat section -->
           <div class="col chat-col">
             <!-- we will appening new chat here -->
-            <div class="new_messages">
-                new messages
-            </div>
-            
+            <div class="new_messages">new messages</div>
+
             <!-- input and send button -->
 
-            <div class="input-group mb-3 chat_container ">
+            <div class="input-group mb-3 chat_container">
               <input
                 type="text"
                 class="form-control"
@@ -276,23 +279,46 @@
           </div>
         </div>
         <!-- our incoming dialog box div is here -->
-        <div class="dialog_wrapper display_none">
-
+        <div class="dialog_wrapper display_none" id="incomingDialogBox">
           <div class="card text-center">
-            <div class="card-header">
-              Featured
-            </div>
+            <div class="card-header">Incoming Call</div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            <div class="card-footer text-muted">
-              2 days ago
+              <h5 class="card-title">Someone is calling you</h5>
+              <img
+                src="/images/calling.gif"
+                alt="calling icon"
+                srcset=""
+                style="height: 150px"
+              />
+              <p class="card-text"></p>
+
+              <a href="#" class="btn btn-primary">Accept Call</a>
+              <a href="#" class="btn btn-primary">Reject Call</a>
             </div>
           </div>
-
         </div>
+
+
+        <!-- outgoing dialog box -->
+        <div class="dialog_wrapper display_none" id="callDialogBox">
+          <div class="card text-center">
+            <div class="card-header">Calling</div>
+            <div class="card-body">
+              <h5 class="card-title">Wait for the response</h5>
+              <img
+                src="/images/calling.gif"
+                alt="calling icon"
+                srcset=""
+                style="height: 150px"
+              />
+              <p class="card-text"></p>
+
+              <a href="#" class="btn btn-primary">Cancel the call</a>
+             
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 

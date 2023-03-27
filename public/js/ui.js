@@ -18,3 +18,10 @@ export const showIncomingCallDialog = (
 
     const incomingCallDialog = elements.getIncomingCallDialog();
 };
+
+export const showCallDialog = (callType, rejectCallHandler) => {
+    const callTypeInfo =
+        callType === constants.callType.Chat_Personal_Code ? "Chat" : "Video";
+    
+    elements.getCallDialog(callTypeInfo, rejectCallHandler);
+    };

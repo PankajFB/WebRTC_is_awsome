@@ -8,15 +8,33 @@ import * as ui from "./ui.js";
 let connectedUsers = {};
 
 export const sendPreOffer = (callType, personalCode) => {
-  const data = {
+
+  connectedUsers = {
     callType: callType,
-    personalCode: personalCode,
+    socketId: personalCode,
+
   };
 
-  console.log(data);
+  if (callType === constants.callType.Chat_Personal_Code || callType === constants.callType.Video_Personal_Code) {
 
-//   sending the pre-offer to the server using the sendPreOffer function from wss.js
-  wss.sendPreOffer(data);
+
+    const data = {
+      callType: callType,
+      personalCode: personalCode,
+    };
+  
+    console.log(data);
+  
+  //   sending the pre-offer to the server using the sendPreOffer function from wss.js
+    wss.sendPreOffer(data);
+
+
+    ui.showCallDialog(callType,rejectCallHandler);
+  } else {
+    console.log("call type not found while calling");
+  }
+
+  
 };
 
 export const handlePreOffer = (data) => {
