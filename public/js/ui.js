@@ -16,12 +16,31 @@ export const showIncomingCallDialog = (
   const callTypeInfo =
     callType === constants.callType.Chat_Personal_Code ? "Chat" : "Video";
 
-    const incomingCallDialog = elements.getIncomingCallDialog();
+  elements.getIncomingCallDialog(
+    callTypeInfo,
+    acceptCallHandler,
+    rejectCallHandler
+  );
 };
 
-export const showCallDialog = (callType, rejectCallHandler) => {
-    const callTypeInfo =
-        callType === constants.callType.Chat_Personal_Code ? "Chat" : "Video";
-    
-    elements.getCallDialog(callTypeInfo, rejectCallHandler);
-    };
+export const showCallDialog = (callType, callingDialogRejectCallHandler) => {
+  const callTypeInfo =
+    callType === constants.callType.Chat_Personal_Code ? "Chat" : "Video";
+
+  elements.getCallDialog(callTypeInfo, callingDialogRejectCallHandler);
+};
+
+export const removeDialog = () => {
+  const incomingDialogBox = document.getElementById("incomingDialogBox");
+  const callDialogBox = document.getElementById("callDialogBox");
+
+  if (!incomingDialogBox.classList.add("display_none")) {
+    console.log("incoming dialog box removed");
+  }else{
+        console.log("incoming dialog box not removed");
+  }
+
+  if (!callDialogBox.classList.add("display_none")) {
+    console.log("call dialog box removed");
+  }
+};

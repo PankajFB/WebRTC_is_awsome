@@ -13,9 +13,6 @@ const io = require("socket.io")(server);
 console.log(path.join(__dirname, "/public/"));
 app.use(express.static(path.join(__dirname, "public")));
 
-
-
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "public/index.html");
 });
@@ -39,7 +36,6 @@ io.on("connection", (socket) => {
     // look for the personal code in the connected users array
     // remeember not to use the { } in this arrow function it does not work
     const isUserExist = connectedUsers.find((id) => id === personalCode);
-    
 
     // if the user exist then we will send the pre-offer to the target reciver
     if (isUserExist) {
@@ -50,14 +46,31 @@ io.on("connection", (socket) => {
 
       console.log("request sent to callee");
       socket.to(personalCode).emit("pre-offer", data2);
-      
-    }
-    else{
-        console.log("user not found");
+    } else {
+      console.log("user not found");
     }
   });
 
- 
+  socket.on("pre-offer-answer", (data) => {
+    console.log("pre-offer-answer accepted by the callee 🥰🥰🥰");
+    console.log(data);
+
+    const isUserExist = connectedUsers.find((id) => id === data.callerSocketId);
+
+    if (isUserExist) {
+      console.log("pre-offer-answer sent to caller");
+      socket.to(data.callerSocketId).emit("pre-offer-answer", {
+        data,
+      });
+    } else {
+      console.log("user not found");
+    }
+
+    // const { callerSocketID, signal } = data;
+    // socket.to(callerSocketID).emit("pre-offer-answer", {
+    //   signal: signal,
+    // });
+  });
 });
 
 server.listen(PORT, () => {
