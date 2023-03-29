@@ -7,6 +7,19 @@ export const updatePersonalCode = (socketID) => {
   personalCode.innerHTML = socketID;
 };
 
+// to upadte the video preview
+export const updateLocalVideo = (stream) => {
+    const localVideo = document.getElementById("local-video");
+    localVideo.srcObject = stream;
+    // turn on the video stream when the meta data is loaded
+    localVideo.addEventListener("loadedmetadata", () => {
+        localVideo.play();
+    });
+};
+
+
+
+
 // to show the incoming call dialog
 export const showIncomingCallDialog = (
   callType,

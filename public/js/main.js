@@ -6,6 +6,8 @@ import * as constants from "./constant.js";
 // we passed the / in the io() function it iwll automatically insert the port on which the server is running
 const socket = io("/");
 
+webRTChandler.updateLocalVideoPreview();
+
 // start the socket connection
 wss.registerSocket(socket);
 

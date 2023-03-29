@@ -7,6 +7,21 @@ let connectedUsers_for_sendPreOffer = {};
 
 let connectedUsers_for_handlePreOffer = {};
 
+// setup the local media stream
+export const updateLocalVideoPreview = () =>{
+  navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true,
+  }).then((stream) => {
+    ui.updateLocalVideo(stream);
+  }, (error) => {
+    console.log("not able to get the media access");
+    console.log(error);
+  });
+}
+
+
+
 export const sendPreOffer = (callType, personalCode) => {
   connectedUsers_for_sendPreOffer = {
     callType: callType,
@@ -73,6 +88,9 @@ export const handlePreOfferAnswer = (data) => {
   if (answerType === constants.preOfferAnswer.Call_Accepted) {
     // to show dialog that the call is accepted
     console.log("call accepted");
+    // send webRTC signal to the callee
+
+
   } else if (answerType === constants.preOfferAnswer.Call_Rejected) {
     // to show dialog that the call is rejected
     console.log("call rejected");
