@@ -71,6 +71,35 @@ io.on("connection", (socket) => {
     //   signal: signal,
     // });
   });
+
+  socket.on("webrtc-signal", (data) => {
+    
+    // console.log(callerSocketID);
+    console.log(data.connectedUserSocketId);
+    console.log(data);
+
+    const isUserExist = connectedUsers.find(
+      (id) => id === data.connectedUserSocketId
+    );
+    console.log(isUserExist);
+
+    if (isUserExist) {
+      try {
+        console.log("webrtc-signal sending to caller");
+
+        // its starting working after replacing the socket.to with io.to dont know why
+        // this is important point to remeber
+
+        io.to(data.connectedUserSocketId).emit("webrtc-signal", {
+          data
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("user not found 😥");
+    }
+  });
 });
 
 server.listen(PORT, () => {

@@ -10,3 +10,9 @@ export const preOfferAnswer = {
     Call_Rejected: "Call_Rejected",
     Call_Busy: "Call_Busy",
 }
+
+export const webRTCSignaling = {
+    Offer: "offer",
+    Answer: "answer",
+    ICE_Candidate: "ICE_Candidate",
+}
